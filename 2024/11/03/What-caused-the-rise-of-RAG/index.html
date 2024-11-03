@@ -6,35 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="一个来自 HUST 的“老东西”，分享来自计算机的快乐与神秘。">
+    <meta name="description" content="A introduction of RAG technology">
 <meta property="og:type" content="article">
 <meta property="og:title" content="What caused the rise of RAG?">
-<meta property="og:url" content="https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/index.html">
+<meta property="og:url" content="https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/index.html">
 <meta property="og:site_name" content="北城南笙的小窝">
-<meta property="og:description" content="一个来自 HUST 的“老东西”，分享来自计算机的快乐与神秘。">
+<meta property="og:description" content="A introduction of RAG technology">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.picgo.net/2024/11/03/RAG0a7a10d0a29ed276.png">
+<meta property="og:image" content="https://img.picgo.net/2024/11/03/image698728b17e63bedc.png">
 <meta property="article:published_time" content="2024-11-03T04:44:42.000Z">
-<meta property="article:modified_time" content="2024-11-03T05:39:30.943Z">
+<meta property="article:modified_time" content="2024-11-03T09:51:03.285Z">
 <meta property="article:author" content="北城南笙">
 <meta property="article:tag" content="Vector Search">
 <meta property="article:tag" content="RAG">
 <meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.picgo.net/2024/11/03/RAG0a7a10d0a29ed276.png">
     
     
       
         
-          <link rel="shortcut icon" href="/project/images/favicon.ico">
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
       
       
         
-          <link rel="icon" type="image/png" href="/project/images/favicon-192x192.png" sizes="192x192">
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
         
       
       
         
-          <link rel="apple-touch-icon" sizes="180x180" href="/project/images/apple-touch-icon.png">
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
         
       
     
@@ -49,7 +52,7 @@
 
     <!-- styles -->
     
-<link rel="stylesheet" href="/project/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
@@ -70,13 +73,13 @@
     <span id="nav">
       <ul>
         <!--
-       --><li><a href="/project/">Home</a></li><!--
+       --><li><a href="/">Home</a></li><!--
      --><!--
-       --><li><a href="/project/archives/">Writing</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      --><!--
-       --><li><a href="/project/categories/">categories</a></li><!--
+       --><li><a href="/categories/">categories</a></li><!--
      --><!--
-       --><li><a href="/project/tags/">tags</a></li><!--
+       --><li><a href="/tags/">tags</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://github.com/Gresham429">Projects</a></li><!--
      -->
@@ -87,7 +90,7 @@
       <ul>
         
         
-        <li><a class="icon" aria-label="Next post" href="/project/2024/10/29/SONG/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2024/10/29/SONG/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -100,21 +103,25 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&text=What caused the rise of RAG?"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&is_video=false&description=What caused the rise of RAG?"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=What caused the rise of RAG?&body=Check out this article: https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&name=What caused the rise of RAG?&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&t=What caused the rise of RAG?"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&text=What caused the rise of RAG?"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&is_video=false&description=What caused the rise of RAG?"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=What caused the rise of RAG?&body=Check out this article: https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&name=What caused the rise of RAG?&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&t=What caused the rise of RAG?"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-problem-of-using-a-pre-trained-LLM-directly"><span class="toc-number">1.</span> <span class="toc-text">The problem of using a pre-trained LLM directly</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-RAG"><span class="toc-number">2.</span> <span class="toc-text">What is RAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-and-how-it-works"><span class="toc-number">3.</span> <span class="toc-text">Why and how it works</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#core-idea"><span class="toc-number">3.1.</span> <span class="toc-text">core idea</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#work-flows"><span class="toc-number">3.2.</span> <span class="toc-text">work flows</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Naive-RAG"><span class="toc-number">3.2.1.</span> <span class="toc-text">Naive RAG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Advanced-RAG"><span class="toc-number">3.2.2.</span> <span class="toc-text">Advanced RAG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Modular-RAG"><span class="toc-number">3.2.3.</span> <span class="toc-text">Modular RAG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-simple-tyring-of-naive-RAG"><span class="toc-number">3.2.4.</span> <span class="toc-text">A simple tyring of naive-RAG</span></a></li></ol></li></ol></li></ol>
+      </div>
     
   </span>
 </div>
@@ -140,7 +147,7 @@
       
         <time datetime="2024-11-03T04:44:42.000Z" class="dt-published" itemprop="datePublished">2024-11-03</time>
         
-        (Updated: <time datetime="2024-11-03T05:39:30.943Z" class="dt-updated" itemprop="dateModified">2024-11-03</time>)
+        (Updated: <time datetime="2024-11-03T09:51:03.285Z" class="dt-updated" itemprop="dateModified">2024-11-03</time>)
         
       
     </div>
@@ -149,14 +156,14 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/project/categories/Large-Language-Model/">Large Language Model</a>
+        <a class="category-link" href="/categories/Large-Language-Model/">Large Language Model</a>
     </div>
 
 
       
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/project/tags/LLM/" rel="tag">LLM</a>, <a class="p-category" href="/project/tags/RAG/" rel="tag">RAG</a>, <a class="p-category" href="/project/tags/Vector-Search/" rel="tag">Vector Search</a>
+        <a class="p-category" href="/tags/LLM/" rel="tag">LLM</a>, <a class="p-category" href="/tags/RAG/" rel="tag">RAG</a>, <a class="p-category" href="/tags/Vector-Search/" rel="tag">Vector Search</a>
     </div>
 
 
@@ -165,7 +172,45 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    
+    <h2 id="The-problem-of-using-a-pre-trained-LLM-directly"><a href="#The-problem-of-using-a-pre-trained-LLM-directly" class="headerlink" title="The problem of using a pre-trained LLM directly"></a>The problem of using a pre-trained LLM directly</h2><ul>
+<li>might provide incorrect information due to training on biased or inaccurate data</li>
+<li>may not perform well on highly specialized topics that require deep domain knowledge</li>
+<li>cannot verify the accuracy of information in real-time</li>
+<li>lack of context and morden news, leading to irrelevant or inappropriate responses</li>
+</ul>
+<p>Honestly, the above points alone are enough to prompt researchers to explore new technologies. Hence the rise of <strong>Retrieval-Augmented Generation (RAG)</strong> aims at solving the illusion of LLM inference.</p>
+<p>Someone might ask that fine-tuning would solve a similar problem, but why is it so much less popular than RAG? Considering convenient, lower costs and dynamic updates, ordinary users would prefer to use RAG rather than fine-tuning a LLM model themselves.</p>
+<h2 id="What-is-RAG"><a href="#What-is-RAG" class="headerlink" title="What is RAG"></a>What is RAG</h2><p><strong>Retrieval-Augmented Generation (RAG)</strong> is a modern technology that introduces an external information sources, providing an effective mitigation strategy for these problems.</p>
+<h2 id="Why-and-how-it-works"><a href="#Why-and-how-it-works" class="headerlink" title="Why and how it works"></a>Why and how it works</h2><h3 id="core-idea"><a href="#core-idea" class="headerlink" title="core idea"></a>core idea</h3><p>The core idea of <strong>RAG</strong> is to use a <strong>user-defined database</strong>, such as a vector db, to <strong>enrich the questions with prompts</strong> in order to get better answers. It utilizes LLM’s <strong>In-Context Learning</strong> to reduce the illusion, proposing a <strong>none-gradient approach</strong>.</p>
+<h3 id="work-flows"><a href="#work-flows" class="headerlink" title="work flows"></a>work flows</h3><blockquote>
+<p>Cited references: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2312.10997"> Retrieval-Augmented Generation for Large Language Models: A Survey</a></p>
+</blockquote>
+<h4 id="Naive-RAG"><a href="#Naive-RAG" class="headerlink" title="Naive RAG"></a>Naive RAG</h4><p>Let’s considering an example as follows. A user poses a question related to recent news. Since the LLM relies on pre-trained data and cannot provide the latest information, RAG compensates for this gap by fetching and integrating knowledge from external databases. It collects news articles relevant to the user’s query, combining them with the original question to form a comprehensive prompt, enabling the large model to generate a rich and insightful answer.</p>
+<p><img src="https://img.picgo.net/2024/11/03/RAG0a7a10d0a29ed276.png" alt="RAG流程图" title="Basic Work Flows of RAG"></p>
+<p>The above RAG example consists of three parts: <strong>indexing, retrieval and generation</strong></p>
+<ul>
+<li><p>Indexing starts with the cleaning and extraction of raw datain diverse formats like PDF, HTML, Word, and Markdown,which is then converted into a uniform plain text format. To accommodate the context limitations of language models, text is segmented into smaller, digestible chunks. Chunks are then encoded into vector representations using an embedding model and stored in vector database. This step is crucial for enabling efficient similarity searches in the subsequent retrieval phase.</p>
+</li>
+<li><p>Retrieval. Upon receipt of a user query, the RAG system employs the same encoding model utilized during the indexing phase to transform the query into a vector representation. It then computes the similarity scores between the query vector and the vector of chunks within the indexed corpus. The system prioritizes and retrieves the top K chunks that demonstrate the greatest similarity to the query. These chunks are subsequently used as the expanded context in prompt.</p>
+</li>
+<li><p>Generation. The posed query and selected documents are synthesized into a coherent prompt to which a large language model is tasked with formulating a response. The model’s approach to answering may vary depending on task-specific criteria, allowing it to either draw upon its inherent parametric knowledge or restrict its responses to the information contained within the provided documents. In cases of ongoing dialogues, any existing conversational history can be integrated into the prompt, enabling the model to engage in multi-turn dialogue interactions effectively.</p>
+</li>
+</ul>
+<p>Not satisfied with this, the researchers began an effort to optimize their search for prompt, not just top-k search. The image below shows two naive-RAG optimizations</p>
+<p><img src="https://img.picgo.net/2024/11/03/image698728b17e63bedc.png" alt="image" title="RAG Optimization"></p>
+<h4 id="Advanced-RAG"><a href="#Advanced-RAG" class="headerlink" title="Advanced RAG"></a>Advanced RAG</h4><p>The advanced RAG introduces two new stages, <strong>Pre-Retrieval and Post-Retrieval</strong>, to enhance <em>retrieval quality</em>:</p>
+<ul>
+<li><p>Pre-Retrieval Process: Focuses on improving the index and queries. Index optimization aims to enhance the quality of indexed content through methods like <strong>increasing data granularity, optimizing index structures, adding metadata, alignment optimization, and mixed retrieval</strong>. Query optimization clarifies and tailors the user’s original question for better search, using techniques like query rewriting, transformation, and expansion.</p>
+</li>
+<li><p>Post-Retrieval Process: Deals with effectively integrating retrieved context with the query. Directly inputting all relevant documents into the large model can lead to information overload. To mitigate this, methods introduced in this stage include <strong>reranking chunks and context compressing</strong>.</p>
+</li>
+</ul>
+<h4 id="Modular-RAG"><a href="#Modular-RAG" class="headerlink" title="Modular RAG"></a>Modular RAG</h4><p>As data types diversify, including audio, video, HTML, and HTTP connections, different tasks require specific modules rather than simple task addition. Researchers have proposed modularizing these functions and performing iterative retrieval until a relatively stable prompt is achieved (e.g., when recall changes are minimal). This refined prompt allows LLMs to capture information more accurately than before.</p>
+<p>For more details, please read the cited paper yourself</p>
+<h4 id="A-simple-tyring-of-naive-RAG"><a href="#A-simple-tyring-of-naive-RAG" class="headerlink" title="A simple tyring of naive-RAG"></a>A simple tyring of naive-RAG</h4><p>Please install an <a target="_blank" rel="noopener" href="https://ollama.com/download/linux">ollama</a> firstly. Then run <code>ollama run llama3.1</code> to start a <strong>llama3.1</strong> server.</p>
+<p>Use conda env, than <code>pip install bs4 langchain langchain_community langchain-openai scikit-learn langchain-ollama</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
   </div>
 </article>
 
@@ -178,13 +223,13 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
-          <li><a href="/project/">Home</a></li>
+          <li><a href="/">Home</a></li>
         
-          <li><a href="/project/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
-          <li><a href="/project/categories/">categories</a></li>
+          <li><a href="/categories/">categories</a></li>
         
-          <li><a href="/project/tags/">tags</a></li>
+          <li><a href="/tags/">tags</a></li>
         
           <li><a target="_blank" rel="noopener" href="https://github.com/Gresham429">Projects</a></li>
         
@@ -193,26 +238,32 @@
 
     
     
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-problem-of-using-a-pre-trained-LLM-directly"><span class="toc-number">1.</span> <span class="toc-text">The problem of using a pre-trained LLM directly</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-RAG"><span class="toc-number">2.</span> <span class="toc-text">What is RAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-and-how-it-works"><span class="toc-number">3.</span> <span class="toc-text">Why and how it works</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#core-idea"><span class="toc-number">3.1.</span> <span class="toc-text">core idea</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#work-flows"><span class="toc-number">3.2.</span> <span class="toc-text">work flows</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Naive-RAG"><span class="toc-number">3.2.1.</span> <span class="toc-text">Naive RAG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Advanced-RAG"><span class="toc-number">3.2.2.</span> <span class="toc-text">Advanced RAG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Modular-RAG"><span class="toc-number">3.2.3.</span> <span class="toc-text">Modular RAG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-simple-tyring-of-naive-RAG"><span class="toc-number">3.2.4.</span> <span class="toc-text">A simple tyring of naive-RAG</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&text=What caused the rise of RAG?"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&is_video=false&description=What caused the rise of RAG?"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=What caused the rise of RAG?&body=Check out this article: https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&name=What caused the rise of RAG?&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://gresham429.github.io/project/2024/11/03/What-caused-the-rise-of-RAG/&t=What caused the rise of RAG?"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&text=What caused the rise of RAG?"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&is_video=false&description=What caused the rise of RAG?"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=What caused the rise of RAG?&body=Check out this article: https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&title=What caused the rise of RAG?"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&name=What caused the rise of RAG?&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://gresham429.github.io/2024/11/03/What-caused-the-rise-of-RAG/&t=What caused the rise of RAG?"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
 
     <div id="actions-footer">
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
@@ -234,13 +285,13 @@
     <nav>
       <ul>
         <!--
-       --><li><a href="/project/">Home</a></li><!--
+       --><li><a href="/">Home</a></li><!--
      --><!--
-       --><li><a href="/project/archives/">Writing</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      --><!--
-       --><li><a href="/project/categories/">categories</a></li><!--
+       --><li><a href="/categories/">categories</a></li><!--
      --><!--
-       --><li><a href="/project/tags/">tags</a></li><!--
+       --><li><a href="/tags/">tags</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://github.com/Gresham429">Projects</a></li><!--
      -->
@@ -290,7 +341,7 @@
   </script>
 
 
-<script src="/project/js/main.js"></script>
+<script src="/js/main.js"></script>
 
 <!-- search -->
 
