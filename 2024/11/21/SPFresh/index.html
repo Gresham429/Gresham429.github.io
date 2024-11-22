@@ -6,19 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="一个来自 HUST 的“老东西”，分享来自计算机的快乐与神秘。">
+    <meta name="description" content="SPFresh: Incremental In-Place Update for Billion-Scale Vector SearchIntroductionThere is a strong desire to support fresh update of vector indices because current systems generate a vast amount of vec">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SPFresh">
 <meta property="og:url" content="https://gresham429.github.io/2024/11/21/SPFresh/index.html">
 <meta property="og:site_name" content="北城南笙的小窝">
-<meta property="og:description" content="一个来自 HUST 的“老东西”，分享来自计算机的快乐与神秘。">
+<meta property="og:description" content="SPFresh: Incremental In-Place Update for Billion-Scale Vector SearchIntroductionThere is a strong desire to support fresh update of vector indices because current systems generate a vast amount of vec">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.picgo.net/2024/11/22/SPFresh-Fig12b13744509774ee5.png">
+<meta property="og:image" content="https://img.picgo.net/2024/11/22/SPFresh-Fig236de0fb79c9eaa46.png">
+<meta property="og:image" content="https://img.picgo.net/2024/11/22/SPFresh-Fig33d2362915ee7037b.png">
 <meta property="article:published_time" content="2024-11-21T04:01:36.000Z">
-<meta property="article:modified_time" content="2024-11-21T04:50:08.146Z">
+<meta property="article:modified_time" content="2024-11-22T14:14:13.240Z">
 <meta property="article:author" content="北城南笙">
 <meta property="article:tag" content="Vector Search">
 <meta property="article:tag" content="Paper Interpretation">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.picgo.net/2024/11/22/SPFresh-Fig12b13744509774ee5.png">
     
     
       
@@ -115,6 +119,10 @@
     </div>
     
     
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SPFresh-Incremental-In-Place-Update-for-Billion-Scale-Vector-Search"><span class="toc-number">1.</span> <span class="toc-text">SPFresh: Incremental In-Place Update for Billion-Scale Vector Search</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LIRE-Protcol-Design"><span class="toc-number">1.2.</span> <span class="toc-text">LIRE Protcol Design</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Background-and-Objectives-of-LIRE"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. Background and Objectives of LIRE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Core-Operations-of-LIRE"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. Core Operations of LIRE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Challenges-in-Reassigning-Vectors"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. Challenges in Reassigning Vectors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Conditions-for-Vector-Reassignment"><span class="toc-number">1.2.4.</span> <span class="toc-text">4. Conditions for Vector Reassignment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Convergence-of-Split-Reassign-Actions"><span class="toc-number">1.2.5.</span> <span class="toc-text">5. Convergence of Split-Reassign Actions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPFresh-Design-and-Implementation"><span class="toc-number">1.3.</span> <span class="toc-text">SPFresh Design and Implementation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Overview"><span class="toc-number">1.3.1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Updater-Design-and-Implementation"><span class="toc-number">1.3.2.</span> <span class="toc-text">Updater Design and Implementation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Local-Rebuilder-Design-and-Implementation"><span class="toc-number">1.3.3.</span> <span class="toc-text">Local Rebuilder Design and Implementation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Block-Controller-Design-and-Implementation"><span class="toc-number">1.3.4.</span> <span class="toc-text">Block Controller Design and Implementation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Crash-Recovery-in-SPFresh-Simplified-Summary"><span class="toc-number">1.3.5.</span> <span class="toc-text">Crash Recovery in SPFresh: Simplified Summary</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
   </span>
 </div>
 
@@ -139,7 +147,7 @@
       
         <time datetime="2024-11-21T04:01:36.000Z" class="dt-published" itemprop="datePublished">2024-11-21</time>
         
-        (Updated: <time datetime="2024-11-21T04:50:08.146Z" class="dt-updated" itemprop="dateModified">2024-11-21</time>)
+        (Updated: <time datetime="2024-11-22T14:14:13.240Z" class="dt-updated" itemprop="dateModified">2024-11-22</time>)
         
       
     </div>
@@ -164,7 +172,89 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    
+    <h1 id="SPFresh-Incremental-In-Place-Update-for-Billion-Scale-Vector-Search"><a href="#SPFresh-Incremental-In-Place-Update-for-Billion-Scale-Vector-Search" class="headerlink" title="SPFresh: Incremental In-Place Update for Billion-Scale Vector Search"></a>SPFresh: Incremental In-Place Update for Billion-Scale Vector Search</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>There is a strong desire to support fresh update of vector indices because current systems generate a vast amount of vector data continuously in various settings. For example, 500+ hours of content are uploaded to YouTube every minute, one billion new images are updated in JD.com every day, and 500PB fresh unstructured data are ingested to Alibaba during a shopping festival.</p>
+<p><img src="https://img.picgo.net/2024/11/22/SPFresh-Fig12b13744509774ee5.png" alt="SPFresh Fig1"></p>
+<p>Fresh updates require vector indices to incorporate new vectors at unprecedented scale and speed while maintaining their high-quality to produce low query latency and high query accuracy of approximate vector searches.</p>
+<p>To scale to large vector datasets with lower costs, this paper presents SPFresh, a <em><strong>disk-based vector index</strong></em> that supports <em><strong>lightweight incremental</strong></em> in-place local updates <em><strong>without the need for global rebuild</strong></em>.</p>
+<p>The core of SPFresh is LIRE, a <em><strong>Lightweight I ncremental REbalancing protocol</strong></em> that accumulates small vector updates of local vector partitions, and re-balances local data distribution at a low cost.</p>
+<h2 id="LIRE-Protcol-Design"><a href="#LIRE-Protcol-Design" class="headerlink" title="LIRE Protcol Design"></a>LIRE Protcol Design</h2><p>The LIRE (Lightweight Incremental REbalancing) protocol is the core component of the SPFresh system, designed to support incremental in-place updates for large-scale vector search indices without the need for global rebuilds. Here’s a detailed breakdown of the LIRE protocol design:</p>
+<h3 id="1-Background-and-Objectives-of-LIRE"><a href="#1-Background-and-Objectives-of-LIRE" class="headerlink" title="1. Background and Objectives of LIRE"></a>1. Background and Objectives of LIRE</h3><ul>
+<li><strong>Background</strong>: Maintaining an efficient Approximate Nearest Neighbor Search (ANNS) system for high-dimensional vector data requires the ability to handle continuously growing data volumes and support updates to the vector index. Traditional graph-based index updates are costly as they may require examining the entire graph for each insertion or deletion.</li>
+<li><strong>Objectives</strong>: LIRE aims to maintain index quality through local updates by only reassigning vectors at the boundaries, thus achieving low-overhead updates and preserving query latency and accuracy.</li>
+</ul>
+<h3 id="2-Core-Operations-of-LIRE"><a href="#2-Core-Operations-of-LIRE" class="headerlink" title="2. Core Operations of LIRE"></a>2. Core Operations of LIRE</h3><p>The LIRE protocol encompasses five fundamental operations: Insert, Delete, Merge, Split, and Reassign.</p>
+<ul>
+<li><strong>Insert</strong>: New vectors are directly inserted into the nearest partition (posting).</li>
+<li><strong>Delete</strong>: Ensures that deleted vectors do not appear in search results and are eventually removed from the corresponding postings.</li>
+<li><strong>Merge</strong>: When a posting falls below a certain size threshold, LIRE identifies the nearest posting for merging, combining them into one.</li>
+<li><strong>Split</strong>: If a posting exceeds a length limit, LIRE evenly splits the oversized posting into two smaller ones.</li>
+<li><strong>Reassign</strong>: After a split or merge, reassigns vectors in the nearby postings to adapt to changes in data distribution.</li>
+</ul>
+<h3 id="3-Challenges-in-Reassigning-Vectors"><a href="#3-Challenges-in-Reassigning-Vectors" class="headerlink" title="3. Challenges in Reassigning Vectors"></a>3. Challenges in Reassigning Vectors</h3><p>Reassigning vectors can be costly as it requires expensive changes to on-disk postings. Therefore, it is crucial to identify the correct set of neighboring postings to avoid unnecessary reassignments.</p>
+<h3 id="4-Conditions-for-Vector-Reassignment"><a href="#4-Conditions-for-Vector-Reassignment" class="headerlink" title="4. Conditions for Vector Reassignment"></a>4. Conditions for Vector Reassignment</h3><p>LIRE uses two necessary conditions to determine whether a vector should be reassigned:</p>
+<ul>
+<li><strong>Condition 1</strong>: A vector <em><strong>in the old posting</strong></em> should consider reassignment if:<br>𝐷 (𝑣, 𝐴𝑜 ) ≤ 𝐷 (𝑣, 𝐴𝑖 ), ∀𝑖 ∈ 1, 2</li>
+<li><strong>Condition 2</strong>: A vector <em><strong>in a nearby posting</strong></em> should consider reassignment if:<br>𝐷 (𝑣, 𝐴𝑖 ) ≤ 𝐷 (𝑣, 𝐴𝑜 ), ∃𝑖 ∈ 1, 2</li>
+</ul>
+<p><img src="https://img.picgo.net/2024/11/22/SPFresh-Fig236de0fb79c9eaa46.png" alt="SPFresh Fig2"></p>
+<h3 id="5-Convergence-of-Split-Reassign-Actions"><a href="#5-Convergence-of-Split-Reassign-Actions" class="headerlink" title="5. Convergence of Split-Reassign Actions"></a>5. Convergence of Split-Reassign Actions</h3><p>LIRE protocol ensures that split and reassign actions will converge to a final state and terminate in a finite number of steps. Please read the original article for a more detailed proof process.</p>
+<h2 id="SPFresh-Design-and-Implementation"><a href="#SPFresh-Design-and-Implementation" class="headerlink" title="SPFresh Design and Implementation"></a>SPFresh Design and Implementation</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>SPFresh’s architecture includes three new modules to implement LIRE:</p>
+<ul>
+<li><strong>In-place Updater</strong>: Responsible for appending new vectors to the tail of their nearest postings and maintaining a version map to track vector deletions.</li>
+<li><strong>Local Rebuilder</strong>: Maintains a job queue for split, merge, and reassign jobs and dispatches these jobs to multiple background threads for concurrent execution.</li>
+<li><strong>Block Controller</strong>: Handles posting read, write, and append requests, as well as posting insertion and deletion operations on disk.</li>
+</ul>
+<p><img src="https://img.picgo.net/2024/11/22/SPFresh-Fig33d2362915ee7037b.png" alt="SPFresh Fig3"></p>
+<h3 id="Updater-Design-and-Implementation"><a href="#Updater-Design-and-Implementation" class="headerlink" title="Updater Design and Implementation"></a>Updater Design and Implementation</h3><p><strong>Role</strong>: The Updater is responsible for handling incoming vector updates by appending new vectors to the nearest postings and managing deletions through a version map.</p>
+<p><strong>Key Features</strong>:</p>
+<ul>
+<li><strong>In-place Updates</strong>: New vectors are appended directly to the tail of their nearest postings, ensuring that updates are performed in-place without the need for global index rebuilds.</li>
+<li><strong>Version Map</strong>: Maintains a version map to trace vector deletions. This map is used to prevent deleted vectors from appearing in search results and to manage the replicas of each vector.</li>
+<li><strong>Split Detection</strong>: Monitors the length of postings and sends split jobs to the Local Rebuilder when a posting exceeds a predefined length limit.</li>
+</ul>
+<h3 id="Local-Rebuilder-Design-and-Implementation"><a href="#Local-Rebuilder-Design-and-Implementation" class="headerlink" title="Local Rebuilder Design and Implementation"></a>Local Rebuilder Design and Implementation</h3><p><strong>Role</strong>: The Local Rebuilder is the core component that implements the LIRE protocol, managing split, merge, and reassign operations in the background.</p>
+<p><strong>Key Features</strong>:</p>
+<ul>
+<li><strong>Job Queue</strong>: Maintains a queue for split, merge, and reassign jobs, which are dispatched to multiple background threads for concurrent execution.</li>
+<li><strong>Split Operation</strong>: Triggered by the Updater, it cleans up deleted vectors and splits oversized postings into smaller ones if necessary.</li>
+<li><strong>Merge Operation</strong>: Identifies and merges nearby undersized postings into a single posting.</li>
+<li><strong>Reassign Operation</strong>: Checks and rebalances the assignment of vectors in newly split or merged postings and their neighbors to maintain data distribution balance.</li>
+<li><strong>Concurrency Control</strong>: Implements fine-grained posting-level write locks to ensure atomic updates to postings and uses compare-and-swap (CAS) operations for concurrent reassignment.</li>
+</ul>
+<h3 id="Block-Controller-Design-and-Implementation"><a href="#Block-Controller-Design-and-Implementation" class="headerlink" title="Block Controller Design and Implementation"></a>Block Controller Design and Implementation</h3><p><strong>Role</strong>: The Block Controller is a lightweight storage engine optimized for reading, providing append-only operations on postings and directly operating on raw SSD interfaces.</p>
+<p><strong>Key Features</strong>:</p>
+<ul>
+<li><strong>SPDK-based Implementation</strong>: Leverages the raw block interface offered by SPDK (Storage Performance Development Kit) to bypass the legacy storage stack and perform direct SSD I&#x2F;O operations.</li>
+<li><strong>Storage Data Layout</strong>: Consists of in-memory Block Mapping, a Free Block Pool, and a Concurrent I&#x2F;O Request Queue.<ul>
+<li><strong>Block Mapping</strong>: Maps posting IDs to SSD block offsets, implemented as an in-memory dense array for efficient lookup.</li>
+<li><strong>Free Block Pool</strong>: Manages free SSD blocks for allocation and garbage collection of stale blocks after split and reassign operations.</li>
+<li><strong>Concurrent I&#x2F;O Request Queue</strong>: Uses an SPDK circular buffer to send asynchronous read and write requests to the SSD device, maximizing I&#x2F;O throughput and minimizing latency.</li>
+</ul>
+</li>
+<li><strong>Posting APIs</strong>:<ul>
+<li><strong>GET</strong>: Retrieves posting data by ID, looking up block mapping and sending asynchronous I&#x2F;O requests to fetch the desired blocks.</li>
+<li><strong>ParallelGET</strong>: Reads multiple postings in parallel to amortize the latency of individual GETs, ensuring fast search and update.</li>
+<li><strong>APPEND</strong>: Adds new vectors to the tail of a posting by allocating new blocks, reading the last block if not full, appending new values, and writing it as a new block.</li>
+<li><strong>PUT</strong>: Writes a new posting to SSD by allocating new blocks and writing the entire posting in bulk, then updating the Block Mapping entry atomically.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Crash-Recovery-in-SPFresh-Simplified-Summary"><a href="#Crash-Recovery-in-SPFresh-Simplified-Summary" class="headerlink" title="Crash Recovery in SPFresh: Simplified Summary"></a>Crash Recovery in SPFresh: Simplified Summary</h3><p><strong>Snapshots and WAL</strong>:</p>
+<ul>
+<li>SPFresh uses periodic snapshots of in-memory and on-disk data structures to capture system states.</li>
+<li>Updates between snapshots are logged in a Write-Ahead Log (WAL) for recovery purposes.</li>
+</ul>
+<p><strong>Recovery Process</strong>:</p>
+<ol>
+<li>In case of a crash, SPFresh recovers from the latest snapshot.</li>
+<li>The WAL is replayed to apply updates since the last snapshot.</li>
+<li>The WAL is deleted after a new snapshot is created.</li>
+</ol>
+<p><strong>Benefits</strong>:</p>
+<ul>
+<li>The recovery process is efficient and space-saving, as it only requires a small amount of disk space and recovers quickly from known states.</li>
+</ul>
+
   </div>
 </article>
 
@@ -192,6 +282,10 @@
 
     
     
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SPFresh-Incremental-In-Place-Update-for-Billion-Scale-Vector-Search"><span class="toc-number">1.</span> <span class="toc-text">SPFresh: Incremental In-Place Update for Billion-Scale Vector Search</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LIRE-Protcol-Design"><span class="toc-number">1.2.</span> <span class="toc-text">LIRE Protcol Design</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Background-and-Objectives-of-LIRE"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. Background and Objectives of LIRE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Core-Operations-of-LIRE"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. Core Operations of LIRE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Challenges-in-Reassigning-Vectors"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. Challenges in Reassigning Vectors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Conditions-for-Vector-Reassignment"><span class="toc-number">1.2.4.</span> <span class="toc-text">4. Conditions for Vector Reassignment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Convergence-of-Split-Reassign-Actions"><span class="toc-number">1.2.5.</span> <span class="toc-text">5. Convergence of Split-Reassign Actions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPFresh-Design-and-Implementation"><span class="toc-number">1.3.</span> <span class="toc-text">SPFresh Design and Implementation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Overview"><span class="toc-number">1.3.1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Updater-Design-and-Implementation"><span class="toc-number">1.3.2.</span> <span class="toc-text">Updater Design and Implementation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Local-Rebuilder-Design-and-Implementation"><span class="toc-number">1.3.3.</span> <span class="toc-text">Local Rebuilder Design and Implementation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Block-Controller-Design-and-Implementation"><span class="toc-number">1.3.4.</span> <span class="toc-text">Block Controller Design and Implementation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Crash-Recovery-in-SPFresh-Simplified-Summary"><span class="toc-number">1.3.5.</span> <span class="toc-text">Crash Recovery in SPFresh: Simplified Summary</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
@@ -212,6 +306,8 @@
 
     <div id="actions-footer">
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
